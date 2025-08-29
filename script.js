@@ -21,35 +21,35 @@ const callCost = 20;
 
 // --- Heart Icon Functionality ---
 const heartIcons = document.querySelectorAll(".fa-heart");
-heartIcons.forEach((heart) => {
-    heart.addEventListener("click", () => {
-    likesCount++;
-    desktopLikesCountEl.textContent = likesCount;
-    mobileLikesCountEl.textContent = likesCount;
+heartIcons.forEach(function (heart) {
+    heart.addEventListener("click", function () {
+        likesCount++;
+        desktopLikesCountEl.textContent = likesCount;
+        mobileLikesCountEl.textContent = likesCount;
     });
 });
 
 // --- Copy Button Functionality ---
 const copyButtons = document.querySelectorAll(".copy-btn");
 
-copyButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-    const card = button.closest("[data-service-number]");
+copyButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        const card = button.closest("[data-service-number]");
 
-    const serviceNumber = card.getAttribute("data-service-number");
+        const serviceNumber = card.getAttribute("data-service-number");
 
-    navigator.clipboard
-        .writeText(serviceNumber)
-        .then(() => {
-        alert(`Copied hotline number: ${serviceNumber}`);
-        copyCount++;
-        desktopCopyCountEl.textContent = copyCount;
-        mobileCopyCountEl.textContent = copyCount;
-        })
-        .catch((err) => {
-        console.error("Failed to copy text: ", err);
-        alert("Failed to copy the number. Please try again.");
-        });
+        navigator.clipboard
+            .writeText(serviceNumber)
+            .then(function () {
+                alert(`Copied hotline number: ${serviceNumber}`);
+                copyCount++;
+                desktopCopyCountEl.textContent = copyCount;
+                mobileCopyCountEl.textContent = copyCount;
+            })
+            .catch(function (err) {
+                console.error("Failed to copy text: ", err);
+                alert("Failed to copy the number. Please try again.");
+            });
     });
 });
 
@@ -58,50 +58,50 @@ const callButtons = document.querySelectorAll(".call-btn");
 const historyList = document.getElementById("history-list");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 
-callButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-    const card = button.closest("[data-service-name]");
+callButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+        const card = button.closest("[data-service-name]");
 
-    const serviceName = card.getAttribute("data-service-name");
-    const serviceNumber = card.getAttribute("data-service-number");
+        const serviceName = card.getAttribute("data-service-name");
+        const serviceNumber = card.getAttribute("data-service-number");
 
-    if (coins < callCost) {
-        alert("You don't have enough coins to make a call.");
-        return;
-    }
+        if (coins < callCost) {
+            alert("You don't have enough coins to make a call.");
+            return;
+        }
 
-    coins -= callCost;
-    desktopCoinsCountEl.textContent = coins;
-    mobileCoinsCountEl.textContent = coins;
+        coins -= callCost;
+        desktopCoinsCountEl.textContent = coins;
+        mobileCoinsCountEl.textContent = coins;
 
-    alert(`Calling ${serviceName} at ${serviceNumber}`);
+        alert(`Calling ${serviceName} at ${serviceNumber}`);
 
-    const now = new Date();
-    const timeString = now.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
-    });
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: true,
+        });
 
-    const historyItem = document.createElement("div");
-    historyItem.className =
-        "flex justify-between items-center p-3 rounded-[8px] bg-[#FAFAFA]";
-    historyItem.innerHTML = `
-        <div>
-        <h2 class="font-semibold text-[18px]">${serviceName}</h2>
-        <h3 class="font-medium text-[#5C5C5C]">${serviceNumber}</h3>
-        </div>
-        <h3 class="text-base">${timeString}</h3>
-    `;
-    historyList.appendChild(historyItem);
+        const historyItem = document.createElement("div");
+        historyItem.className =
+            "flex justify-between items-center p-3 rounded-[8px] bg-[#FAFAFA]";
+        historyItem.innerHTML = `
+            <div>
+            <h2 class="font-semibold text-[18px]">${serviceName}</h2>
+            <h3 class="font-medium text-[#5C5C5C]">${serviceNumber}</h3>
+            </div>
+            <h3 class="text-base">${timeString}</h3>
+        `;
+        historyList.appendChild(historyItem);
     });
 });
 
 // --- Clear History Button Functionality ---
 if (clearHistoryBtn) {
-    clearHistoryBtn.addEventListener("click", () => {
-    historyList.innerHTML = "";
+    clearHistoryBtn.addEventListener("click", function () {
+        historyList.innerHTML = "";
     });
 }
 
@@ -110,16 +110,16 @@ const toggleBtn = document.getElementById("toggle-history");
 const historySection = document.getElementById("call-history");
 const scrollAnchor = document.getElementById("scroll-anchor");
 
-toggleBtn.addEventListener("click", () => {
-const isHidden = historySection.classList.toggle("hidden");
-toggleBtn.textContent = isHidden ? "History" : "Hide";
+toggleBtn.addEventListener("click", function () {
+    const isHidden = historySection.classList.toggle("hidden");
+    toggleBtn.textContent = isHidden ? "History" : "Hide";
 
-if (!isHidden) {
-        setTimeout(() => {
-        scrollAnchor.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-        });
+    if (!isHidden) {
+        setTimeout(function () {
+            scrollAnchor.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
         }, 80);
     }
 });
