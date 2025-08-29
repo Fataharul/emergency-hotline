@@ -104,3 +104,22 @@ if (clearHistoryBtn) {
     historyList.innerHTML = "";
     });
 }
+
+// --- Mobile History Button Toggle Functionality ---
+const toggleBtn = document.getElementById("toggle-history");
+const historySection = document.getElementById("call-history");
+const scrollAnchor = document.getElementById("scroll-anchor");
+
+toggleBtn.addEventListener("click", () => {
+const isHidden = historySection.classList.toggle("hidden");
+toggleBtn.textContent = isHidden ? "History" : "Hide";
+
+if (!isHidden) {
+        setTimeout(() => {
+        scrollAnchor.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+        });
+        }, 80);
+    }
+});
