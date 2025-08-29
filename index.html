@@ -402,6 +402,28 @@
           </div>
         </div>
       </section>
+
+      <!-- Call History Section -->
+      <section
+        id="call-history"
+        class="hidden sm:flex order-first sm:order-none w-full sm:w-auto bg-white shadow-lg items-stretch flex-[1] p-6 sm:flex-col gap-4 rounded-xl"
+      >
+        <div class="flex justify-between items-center">
+          <div class="flex items-center gap-2">
+            <i
+              class="fa-regular fa-clock text-[22px] font-extralight text-[#5C5C5C]"
+            ></i>
+            <h2 class="text-[22px] font-semibold">Call History</h2>
+          </div>
+          <button
+            id="clear-history-btn"
+            class="px-9 py-3 bg-[#00A63E] rounded-[50px] text-base text-white cursor-pointer hover:bg-[#00862E]"
+          >
+            Clear
+          </button>
+        </div>
+        <div id="history-list" class="flex flex-col gap-4"></div>
+      </section>
     </main>
   </body>
 </html>
